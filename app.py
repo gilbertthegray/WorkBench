@@ -1,5 +1,5 @@
 """
-FlowDesk — Enterprise Workflow Platform
+WorkBench — Enterprise Workflow Platform
 Run:  streamlit run app.py   (requires streamlit >= 1.36)
 Data: flowdesk.db is created automatically on first run.
       database.py must be in the same folder as app.py.
@@ -689,7 +689,7 @@ with st.sidebar:
         '<div class="logo-bar">'
         '<div style="font-size:20px">⬡</div>'
         '<div>'
-        '<div class="logo-name">FlowDesk</div>'
+        '<div class="logo-name">WorkBench</div>'
         '<div class="logo-version">v3.2 · SQLite</div>'
         '</div>'
         '</div>',
@@ -1404,7 +1404,7 @@ elif page == "Admin":
         st.markdown('''**To enable email notifications:**
 1. Add your SMTP credentials to `.streamlit/secrets.toml`
 2. Set a **Group Email Address** on each group in the Groups tab
-3. FlowDesk will automatically email the group when tasks are assigned, advanced, blocked, or completed
+3. WorkBench will automatically email the group when tasks are assigned, advanced, blocked, or completed
 
 ```toml
 [email]
@@ -1412,6 +1412,6 @@ smtp_host     = "smtp.gmail.com"
 smtp_port     = 587
 smtp_user     = "gabetb13@gmail.com"
 smtp_password = "Popcornpop51!"
-from_name     = "FlowDesk"
+from_name     = "WorkBench"
 enabled       = true
 ```''')
