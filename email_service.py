@@ -1,5 +1,5 @@
 """
-email_service.py — FlowDesk email notification service
+email_service.py — WorkBench email notification service
 
 Sends HTML emails to group inboxes when workflow tasks are assigned,
 advanced, blocked, or completed.  Always sends to a GROUP email address —
@@ -10,9 +10,9 @@ SMTP configuration lives in .streamlit/secrets.toml:
     [email]
     smtp_host     = "smtp.gmail.com"
     smtp_port     = 587
-    smtp_user     = "flowdesk@yourcompany.com"
+    smtp_user     = "WorkBench@yourcompany.com"
     smtp_password = "your-app-password"
-    from_name     = "FlowDesk"
+    from_name     = "WorkBench"
     enabled       = true
 
 Or via environment variables (useful for Docker / Railway):
@@ -51,7 +51,7 @@ def _get_email_config() -> dict | None:
             "port":      int(cfg.get("smtp_port", 587)),
             "user":      cfg.get("smtp_user",     ""),
             "password":  cfg.get("smtp_password", ""),
-            "from_name": cfg.get("from_name",     "FlowDesk"),
+            "from_name": cfg.get("from_name",     "WorkBench"),
             "enabled":   bool(cfg.get("enabled",  True)),
         }
     except Exception:
@@ -71,7 +71,7 @@ def _get_email_config() -> dict | None:
         "port":      int(os.getenv("EMAIL_SMTP_PORT", 587)),
         "user":      user,
         "password":  password,
-        "from_name": os.getenv("EMAIL_FROM_NAME", "FlowDesk"),
+        "from_name": os.getenv("EMAIL_FROM_NAME", "WorkBench"),
         "enabled":   True,
     }
 
@@ -146,11 +146,11 @@ def _build_email(
         "unblocked":  "#f59e0b",
     }.get(action.lower(), "#3b82f6")
 
-    subject = f"[FlowDesk] {action.capitalize()}: {task_id} — {task_title}"
+    subject = f"[WorkBench] {action.capitalize()}: {task_id} — {task_title}"
 
     cta = (f'<a href="{task_url}" style="display:inline-block;margin-top:20px;'
            f'padding:12px 24px;background:#2563eb;color:#ffffff;text-decoration:none;'
-           f'border-radius:6px;font-weight:600;font-size:14px;">View Task in FlowDesk</a>'
+           f'border-radius:6px;font-weight:600;font-size:14px;">View Task in WorkBench</a>'
            if task_url else "")
 
     html = f"""
@@ -175,7 +175,7 @@ def _build_email(
                 <tr>
                   <td>
                     <span style="font-size:22px;font-weight:700;color:#f1f5f9;
-                                 font-family:'Courier New',monospace;">⬡ FlowDesk</span>
+                                 font-family:'Courier New',monospace;">⬡ WorkBench</span>
                   </td>
                   <td align="right">
                     <span style="display:inline-block;padding:4px 12px;
@@ -315,7 +315,7 @@ def _build_email(
           <tr>
             <td style="padding:16px 32px;background:#0d1117;border-top:1px solid #1e2736;">
               <p style="margin:0;font-size:11px;color:#475569;text-align:center;">
-                This is an automated notification from FlowDesk.
+                This is an automated notification from WorkBench.
                 Sent {datetime.now().strftime("%d %b %Y at %H:%M")}.
               </p>
             </td>
@@ -476,13 +476,13 @@ def test_connection() -> tuple[bool, str]:
     if not cfg:
         return False, "Email not configured or disabled."
 
-    subject = "[FlowDesk] Test Email — Connection Successful"
+    subject = "[WorkBench] Test Email — Connection Successful"
     html    = """
 <div style="font-family:Arial,sans-serif;padding:32px;background:#111827;color:#e2e8f0;
             border-radius:8px;max-width:500px;">
-  <h2 style="color:#60a5fa;margin:0 0 16px;">⬡ FlowDesk — Test Email</h2>
+  <h2 style="color:#60a5fa;margin:0 0 16px;">⬡ WorkBench — Test Email</h2>
   <p style="color:#94a3b8;">Your SMTP configuration is working correctly.
-  FlowDesk will send group notification emails to the addresses
+  WorkBench will send group notification emails to the addresses
   configured on each group.</p>
 </div>
 """
