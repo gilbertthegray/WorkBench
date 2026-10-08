@@ -111,6 +111,16 @@ hr{border-color:var(--line)!important;margin:1rem 0!important}
 [data-baseweb="popover"],[data-baseweb="popover"] ul,[data-baseweb="popover"] li{background:#fff!important;color:var(--text)!important}
 .stButton>button p{color:inherit!important}
 .stButton>button[kind="primary"] p{color:#fff!important}
+
+[data-testid="stMarkdownContainer"],[data-testid="stMarkdownContainer"] div,[data-testid="stVerticalBlock"]{color:var(--text)}
+[data-testid="stMarkdownContainer"]{color:var(--text)!important}
+.card,.stat,.notif,.kv .v,.t-title,.page-title,.sec,.stat .v,.tl .tx{color:var(--text)}
+.stat.alert .v{color:#c0392b}
+.t-meta,.kv .k,.th{color:var(--muted)}
+.id,.tl .tm,.notif .tm{color:var(--faint)}
+.chip{color:#475467}
+.badge.b-new{color:#2b50d6}.badge.b-prog{color:#a35d00}.badge.b-done{color:#1b7a43}.badge.b-block{color:#b42318}.badge.b-gray{color:#475467}.badge.b-admin{color:#6941c6}
+.lock{color:#93370d}
 </style>""", unsafe_allow_html=True)
 
 # ───────────────────────── seed data ─────────────────────────
